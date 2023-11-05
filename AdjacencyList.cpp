@@ -2,12 +2,14 @@
 #include "AdjacencyList.h"
 
 AdjacencyList::AdjacencyList() {
-
+	web_con = map <string, vector<string>>();
+	con_list = map <string, vector<string>>();
 }
 	
 
 AdjacencyList::~AdjacencyList() {
-
+	web_con.clear();
+	con_list.clear();
 }
 
 bool AdjacencyList::CheckInList(string webpage) {
@@ -56,7 +58,7 @@ void AdjacencyList::AddCon(string from, string con) {
 void AdjacencyList::AddConM(string from, string con) {
 	//search in vector if con already in vector 
 	if (find(con_list[con].begin(), con_list[con].end(), from) == con_list[con].end()) {
-		con_list[from].push_back(con);
+		con_list[con].push_back(from); 
 	}
 }
 
@@ -70,7 +72,7 @@ void AdjacencyList::AddConAsKeyM(string from) {
 
 void AdjacencyList::AddWebpage(string from, string to) {
 	//if not already added to graph, add "from" to graph
-	if (CheckInList(from)) {
+	if (!CheckInList(from)) {
 		//not in map -> add
 		AddNewWebpage(from, to);
 	}
@@ -79,14 +81,14 @@ void AdjacencyList::AddWebpage(string from, string to) {
 		AddCon(from, to);
 	}
 	//if not already added to graph, add "to" to graph 
-	if (CheckInList(to)) {
+	if (!CheckInList(to)) {
 		//not in map -> add
 		AddConAsKey(to);
 	}
 
 
 	//make M matrix for PI
-	if (CheckInM(to)) { 
+	if (!CheckInM(to)) { 
 		//not in map -> add
 		AddNewWebpageM(from, to);
 	}
@@ -95,7 +97,7 @@ void AdjacencyList::AddWebpage(string from, string to) {
 		AddConM(from, to);
 	}
 	//if not already added to graph, add "to" to graph 
-	if (CheckInM(from)) { 
+	if (!CheckInM(from)) { 
 		//not in map -> add
 		AddConAsKeyM(from); 
 	}
@@ -116,15 +118,16 @@ void AdjacencyList::PowIt(int power_iterations) {
 		r[ele.first] = intial;
 	}
 
-	for (int u = 0; u < power_iterations; u++) {
+	for (int u = 0; u < power_iterations - 1; u++) {
 		for (auto mem : web_con) {
 			//make temp before for loop 
 			//run through con_list[key].second.size(), for each vect in con_list.sec = 1/web_con[from].size() * r[from], add to temp 
-			float total = 0.00;
+			float total = 0;
 			for (int i = 0; i < con_list[mem.first].size(); i++) {
-				total += (1.00 / web_con[con_list[mem.first][i]].size()) * r[con_list[mem.first][i]];
+				total += (1.00 / (web_con[con_list[mem.first][i]].size())) * r[con_list[mem.first][i]]; 
 			}
-			temp[mem.first] = total;
+			temp[mem.first] = total; 
+			
 		}
 
 		for (auto vect : temp) {
