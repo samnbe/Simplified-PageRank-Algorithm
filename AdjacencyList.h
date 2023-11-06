@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 
@@ -21,9 +22,6 @@ public:
 	void AddCon(string from, string con); 
 	void AddConM(string from, string con);
 	void PowIt(int power_iterations);
-	void Print(map<string, float> r);
+	void Print(map<string, double> r);
+	vector<double> Testing(int power_iterations); 
 };
-
-
-//make sure to test for only 1 weboage pointing to itself (everything is 1)
-
