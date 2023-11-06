@@ -2,12 +2,14 @@
 #include "AdjacencyList.h"
 
 AdjacencyList::AdjacencyList() {
+	//create empty maps 
 	web_con = map <string, vector<string>>();
 	con_list = map <string, vector<string>>();
 }
 	
 
 AdjacencyList::~AdjacencyList() {
+	//empty the maps 
 	web_con.clear();
 	con_list.clear();
 }
@@ -103,26 +105,26 @@ void AdjacencyList::AddWebpage(string from, string to) {
 	}
 }
 
-void AdjacencyList::Print(map<string, float> r) {
+void AdjacencyList::Print(map<string, double> r) {
 	for (auto element : r) {
 		cout << element.first << " " << fixed << setprecision(2) << element.second << endl;
 	}
 }
 
 void AdjacencyList::PowIt(int power_iterations) {
-	float intial = 1.00 / web_con.size();
-	map<string, float> r;
-	map<string, float> temp; 
+	double intial = 1.00 / web_con.size();
+	map<string, double> r;
+	map<string, double> temp; 
 
+	//intialize r matrix to 1/# of webpages inputted 
 	for (auto ele : web_con) {
 		r[ele.first] = intial;
 	}
 
+	//calculate solution by replacing the r map with the new matrix 
 	for (int u = 0; u < power_iterations - 1; u++) {
 		for (auto mem : web_con) {
-			//make temp before for loop 
-			//run through con_list[key].second.size(), for each vect in con_list.sec = 1/web_con[from].size() * r[from], add to temp 
-			float total = 0;
+			double total = 0;
 			for (int i = 0; i < con_list[mem.first].size(); i++) {
 				total += (1.00 / (web_con[con_list[mem.first][i]].size())) * r[con_list[mem.first][i]]; 
 			}
@@ -137,5 +139,39 @@ void AdjacencyList::PowIt(int power_iterations) {
 	}
 
 	Print(r);
+}
+
+vector<double> AdjacencyList::Testing(int power_iterations) {  
+	double intial = 1.00 / web_con.size();
+	map<string, double> r;
+	map<string, double> temp;
+
+	for (auto ele : web_con) {
+		r[ele.first] = intial;
+	}
+
+	for (int u = 0; u < power_iterations - 1; u++) {
+		for (auto mem : web_con) {
+			double total = 0;
+			for (int i = 0; i < con_list[mem.first].size(); i++) {
+				total += (1.00 / (web_con[con_list[mem.first][i]].size())) * r[con_list[mem.first][i]];
+			}
+			temp[mem.first] = total;
+
+		}
+
+		for (auto vect : temp) {
+			r[vect.first] = vect.second;
+		}
+
+	}
+
+	vector<double> v;
+
+	for (auto e : r) {
+		v.push_back(e.second);
+	}
+	
+	return v;
 }
 
