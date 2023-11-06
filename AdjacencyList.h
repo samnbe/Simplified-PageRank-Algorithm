@@ -22,6 +22,6 @@ public:
 	void AddCon(string from, string con); 
 	void AddConM(string from, string con);
 	void PowIt(int power_iterations);
-	void Print(map<string, double> r);
-	vector<double> Testing(int power_iterations); 
+	void Print(map<string, float> r);
+	vector<float> Testing(int power_iterations); 
 };
