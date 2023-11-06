@@ -105,16 +105,16 @@ void AdjacencyList::AddWebpage(string from, string to) {
 	}
 }
 
-void AdjacencyList::Print(map<string, double> r) {
+void AdjacencyList::Print(map<string, float> r) {
 	for (auto element : r) {
 		cout << element.first << " " << fixed << setprecision(2) << element.second << endl;
 	}
 }
 
 void AdjacencyList::PowIt(int power_iterations) {
-	double intial = 1.00 / web_con.size();
-	map<string, double> r;
-	map<string, double> temp; 
+	float intial = 1.00 / web_con.size();
+	map<string, float> r;
+	map<string, float> temp; 
 
 	//intialize r matrix to 1/# of webpages inputted 
 	for (auto ele : web_con) {
@@ -124,7 +124,7 @@ void AdjacencyList::PowIt(int power_iterations) {
 	//calculate solution by replacing the r map with the new matrix 
 	for (int u = 0; u < power_iterations - 1; u++) {
 		for (auto mem : web_con) {
-			double total = 0;
+			float total = 0;
 			for (int i = 0; i < con_list[mem.first].size(); i++) {
 				total += (1.00 / (web_con[con_list[mem.first][i]].size())) * r[con_list[mem.first][i]]; 
 			}
@@ -141,10 +141,10 @@ void AdjacencyList::PowIt(int power_iterations) {
 	Print(r);
 }
 
-vector<double> AdjacencyList::Testing(int power_iterations) {  
-	double intial = 1.00 / web_con.size();
-	map<string, double> r;
-	map<string, double> temp;
+vector<float> AdjacencyList::Testing(int power_iterations) {  
+	float intial = 1.00 / web_con.size();
+	map<string, float> r;
+	map<string, float> temp;
 
 	for (auto ele : web_con) {
 		r[ele.first] = intial;
@@ -152,7 +152,7 @@ vector<double> AdjacencyList::Testing(int power_iterations) {
 
 	for (int u = 0; u < power_iterations - 1; u++) {
 		for (auto mem : web_con) {
-			double total = 0;
+			float total = 0;
 			for (int i = 0; i < con_list[mem.first].size(); i++) {
 				total += (1.00 / (web_con[con_list[mem.first][i]].size())) * r[con_list[mem.first][i]];
 			}
@@ -166,12 +166,11 @@ vector<double> AdjacencyList::Testing(int power_iterations) {
 
 	}
 
-	vector<double> v;
+	vector<float> v;
 
 	for (auto e : r) {
 		v.push_back(e.second);
 	}
 	
-	return v;
 }
 
