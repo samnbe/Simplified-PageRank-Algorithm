@@ -2,7 +2,7 @@
 #include <vector>
 #include <map>
 #include "AdjacencyList.h"
-#include "AdjacencyList.cpp"
+//#include "AdjacencyList.cpp"
 
 using namespace std;
 
@@ -22,5 +22,4 @@ int main(){
 	}
 
 	graph.PowIt(power_iterations);
-
 }
