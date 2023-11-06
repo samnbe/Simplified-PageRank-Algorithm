@@ -12,8 +12,8 @@
 //	graph.AddWebpage("b.com", "e.com");
 //	graph.AddWebpage("c.com", "d.com");
 //
-//	std::vector<double> actualOutput = graph.Testing(2);  
-//	std::vector<double> expectedOutput = {0.20, 0.30, 0.10, 0.10, 0.30};
+//	std::vector<float> actualOutput = graph.Testing(2);  
+//	std::vector<float> expectedOutput = {0.20, 0.30, 0.10, 0.10, 0.30};
 //	REQUIRE(actualOutput.size() == expectedOutput.size());
 //	REQUIRE(actualOutput == expectedOutput);
 //}
@@ -22,8 +22,8 @@
 //	AdjacencyList graph; 
 //	graph.AddWebpage("a.com", "a.com");
 //
-//	std::vector<double> actualOutput = graph.Testing(2);  
-//	std::vector<double> expectedOutput = {1.00};
+//	std::vector<float> actualOutput = graph.Testing(2);  
+//	std::vector<float> expectedOutput = {1.00};
 //	REQUIRE(actualOutput.size() == expectedOutput.size());
 //	REQUIRE(actualOutput == expectedOutput);
 //}
@@ -44,8 +44,8 @@
 //	graph.AddWebpage("d.com", "e.com");
 //
 //
-//	std::vector<double> actualOutput = graph.Testing(5); 
-//	std::vector<double> expectedOutput = { 0.02, 0.04, 0.04, 0.03, 0.09, 0.04 };
+//	std::vector<float> actualOutput = graph.Testing(5); 
+//	std::vector<float> expectedOutput = {0.02, 0.04, 0.04, 0.03, 0.09, 0.04};
 //	REQUIRE(actualOutput.size() == expectedOutput.size());
 //	REQUIRE(actualOutput == expectedOutput);
 //}
@@ -96,8 +96,8 @@
 //	graph.AddWebpage("r.com", "k.com");
 //	graph.AddWebpage("r.com", "m.com");
 //
-//	std::vector<double> actualOutput = graph.Testing(2); 
-//	std::vector<double> expectedOutput = { 0.06, 0.11, 0.06, 0.06, 0.03, 0.12, 0.00, 0.06, 0.20, 0.03, 0.11, 0.00, 0.13, 0.07, 0.02, 0.04, 0.03, 0.01 };
+//	std::vector<float> actualOutput = graph.Testing(2); 
+//	std::vector<float> expectedOutput = { 0.06, 0.11, 0.06, 0.06, 0.03, 0.12, 0.00, 0.06, 0.20, 0.03, 0.11, 0.00, 0.13, 0.07, 0.02, 0.04, 0.03, 0.01 };
 //	std::sort(expectedOutput.begin(), expectedOutput.end());
 //	REQUIRE(actualOutput == expectedOutput);
 //}
@@ -111,8 +111,8 @@
 //	graph.AddWebpage("d.com", "b.com");
 //	graph.AddWebpage("d.com", "c.com");
 //
-//	std::vector<double> actualOutput = graph.Testing(25);
-//	std::vector<double> expectedOutput = { 0.00, 0.20, 0.40, 0.40 }; 
+//	std::vector<float> actualOutput = graph.Testing(25);
+//	std::vector<float> expectedOutput = { 0.00, 0.20, 0.40, 0.40 }; 
 //	std::sort(expectedOutput.begin(), expectedOutput.end());
 //	REQUIRE(actualOutput == expectedOutput);
 //}
